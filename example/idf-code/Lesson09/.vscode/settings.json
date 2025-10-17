@@ -1,0 +1,11 @@
+{
+    "files.associations": {
+        "bsp_illuminate.h": "c",
+        "bsp_dht20.h": "c",
+        "bsp_display.h": "c",
+        "bsp_extra.h": "c",
+        "lvgl.h": "c"
+    },
+    "idf.flashType": "UART",
+    "idf.portWin": "COM14"
+}

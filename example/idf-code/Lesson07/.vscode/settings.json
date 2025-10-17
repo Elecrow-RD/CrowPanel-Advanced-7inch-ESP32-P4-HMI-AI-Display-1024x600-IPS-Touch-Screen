@@ -1,0 +1,11 @@
+{
+    "idf.flashType": "UART",
+    "idf.portWin": "COM14",
+    "files.associations": {
+        "esp_lcd_ek79007.h": "c",
+        "gpio.h": "c",
+        "lvgl.h": "c",
+        "bsp_illuminate.h": "c",
+        "esp_log.h": "c"
+    }
+}

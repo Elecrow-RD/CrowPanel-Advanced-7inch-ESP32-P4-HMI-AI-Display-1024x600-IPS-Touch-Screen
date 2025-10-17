@@ -1,0 +1,1 @@
+**Note**: This is an IDF course. Before proceeding, ensure you have **Visual Studio Code** and the **IDF **environment installed. The IDF version must be **5.4.2** or higher.

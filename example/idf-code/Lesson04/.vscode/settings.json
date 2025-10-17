@@ -1,0 +1,24 @@
+{
+  "C_Cpp.intelliSenseEngine": "default",
+  "idf.espIdfPathWin": "j:\\My_APP\\IDF_MY\\v5.4.2\\esp-idf",
+  "idf.pythonInstallPath": "j:\\My_APP\\IDF_MY\\TOOL\\tools\\idf-python\\3.11.2\\python.exe",
+  "idf.openOcdConfigs": [
+    "board/esp32p4-builtin.cfg"
+  ],
+  "idf.toolsPathWin": "j:\\My_APP\\IDF_MY\\TOOL",
+  "idf.customExtraVars": {
+    "IDF_TARGET": "esp32p4"
+  },
+  "clangd.path": "j:\\My_APP\\IDF_MY\\TOOL\\tools\\esp-clang\\esp-18.1.2_20240912\\esp-clang\\bin\\clangd.exe",
+  "clangd.arguments": [
+    "--background-index",
+    "--query-driver=j:\\My_APP\\IDF_MY\\TOOL\\tools\\xtensa-esp-elf\\esp-14.2.0_20241119\\xtensa-esp-elf\\bin\\xtensa-esp32-elf-gcc.exe",
+    "--compile-commands-dir=${workspaceFolder}\\build"
+  ],
+  "idf.portWin": "COM14",
+  "idf.flashType": "UART",
+  "files.associations": {
+    "bsp_uart.h": "c",
+    "task.h": "c"
+  }
+}

@@ -1,0 +1,9 @@
+dependencies:
+  idf:
+    version: '>=5.4.0'
+  espressif/esp_lcd_ek79007: ^1.0.2
+  espressif/esp_lvgl_port: ^2.6.0
+  lvgl/lvgl: ^8.3.11
+  espressif/esp_cam_sensor: ^1.2.0
+  espressif/esp_sccb_intf: ^0.0.5
+  espressif/esp_video: ^1.1.0
