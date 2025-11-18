@@ -1,8 +1,0 @@
-{
-    "files.associations": {
-        "bsp_illuminate.h": "c",
-        "bsp_dht20.h": "c"
-    },
-    "idf.flashType": "UART",
-    "idf.portWin": "COM14"
-}
