@@ -1,2 +1,3 @@
-Factory display code to show the boot screen and the official lvgl display case.
-When users re-download the factory cases, they need to first put the libraries in the link in libraries as required.
+Factory codes are compiled by IDF.
+
+### Program download link: https://drive.google.com/drive/folders/1Cg8Jc6SP8CvCD9zALpTHKluexK7lz48a?usp=sharing
