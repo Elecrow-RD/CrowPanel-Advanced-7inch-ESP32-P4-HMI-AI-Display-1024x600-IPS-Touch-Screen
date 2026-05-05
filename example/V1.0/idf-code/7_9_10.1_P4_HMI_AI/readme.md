@@ -16,17 +16,10 @@ P4 HMI display (different screens correspond to different code, except for the c
 
 Download the code for the corresponding screen size:
 
-CrowPanel Advanced 5inch | ESP32-P4 HMI AI Display:
-
 
 CrowPanel Advanced 7inch | ESP32-P4 HMI AI Display:
 https://drive.google.com/file/d/1mGSaZ-9NiI8-cwcbhZgRR8-os7AhnqYb/view?usp=sharing
 
-CrowPanel Advanced 9inch | ESP32-P4 HMI AI Display:
-https://drive.google.com/file/d/1mGSaZ-9NiI8-cwcbhZgRR8-os7AhnqYb/view?usp=sharing
-
-CrowPanel Advanced 10.1inch | ESP32-P4 HMI AI Display:
-https://drive.google.com/file/d/1mGSaZ-9NiI8-cwcbhZgRR8-os7AhnqYb/view?usp=sharing
 
 Use VS Code to open the project (here we take the 9-inch screen as an example, the operation steps are the same for other sizes):
 
