@@ -1,0 +1,4 @@
+dependencies:
+  espressif/esp_lcd_ek79007: ^1.0.2
+  espressif/esp_lvgl_port: ^2.6.0
+  lvgl/lvgl: ^8.3.11

@@ -1,0 +1,230 @@
+menu "ESP Library Utils Configurations"
+    config ESP_UTILS_CONF_FILE_SKIP
+        bool "Enable to skip `esp_utils_conf.h`"
+        default y
+        help
+            If want to use `esp_utils_conf.h` to configure the library, uncheck this option. Otherwise, the configurations in sdkconfig will be used.
+
+    if ESP_UTILS_CONF_FILE_SKIP
+        menu "Check functions"
+            choice ESP_UTILS_CONF_CHECK_HANDLE_METHOD_CHOICE
+                prompt "Select handle method when check failed"
+                default ESP_UTILS_CHECK_HANDLE_WITH_ERROR_LOG
+
+                config ESP_UTILS_CHECK_HANDLE_WITH_NONE
+                    bool "Do nothing"
+
+                config ESP_UTILS_CHECK_HANDLE_WITH_ERROR_LOG
+                    bool "Print error message"
+
+                config ESP_UTILS_CHECK_HANDLE_WITH_ASSERT
+                    bool "Assert"
+            endchoice
+
+            config ESP_UTILS_CONF_CHECK_HANDLE_METHOD
+                int
+                default 0 if ESP_UTILS_CHECK_HANDLE_WITH_NONE
+                default 1 if ESP_UTILS_CHECK_HANDLE_WITH_ERROR_LOG
+                default 2 if ESP_UTILS_CHECK_HANDLE_WITH_ASSERT
+        endmenu
+
+        menu "Log functions"
+            choice ESP_UTILS_CONF_LOG_IMPL_TYPE_CHOICE
+                prompt "Select log implementation"
+                default ESP_UTILS_CONF_LOG_IMPL_ESP
+
+                config ESP_UTILS_CONF_LOG_IMPL_STDLIB
+                    bool "Standard (printf)"
+
+                config ESP_UTILS_CONF_LOG_IMPL_ESP
+                    bool "ESP (ESP_LOG)"
+            endchoice
+
+            config ESP_UTILS_CONF_LOG_IMPL_TYPE
+                int
+                default 0 if ESP_UTILS_CONF_LOG_IMPL_STDLIB
+                default 1 if ESP_UTILS_CONF_LOG_IMPL_ESP
+
+            choice ESP_UTILS_CONF_LOG_LEVEL_CHOICE
+                prompt "Select global log level"
+                default ESP_UTILS_CONF_LOG_LEVEL_INFO
+
+                config ESP_UTILS_CONF_LOG_LEVEL_DEBUG
+                    bool "Debug"
+                    help
+                        Extra information which is not necessary for normal use (values, pointers, sizes, etc)
+
+                config ESP_UTILS_CONF_LOG_LEVEL_INFO
+                    bool "Info"
+                    help
+                        Information messages which describe the normal flow of events
+
+                config ESP_UTILS_CONF_LOG_LEVEL_WARNING
+                    bool "Warning"
+                    help
+                        Error conditions from which recovery measures have been taken
+
+                config ESP_UTILS_CONF_LOG_LEVEL_ERROR
+                    bool "Error"
+                    help
+                        Critical errors, software module cannot recover on its own
+
+                config ESP_UTILS_CONF_LOG_LEVEL_NONE
+                    bool "None"
+                    help
+                        No log output
+            endchoice
+
+            config ESP_UTILS_CONF_LOG_LEVEL
+                int
+                default 0 if ESP_UTILS_CONF_LOG_LEVEL_DEBUG
+                default 1 if ESP_UTILS_CONF_LOG_LEVEL_INFO
+                default 2 if ESP_UTILS_CONF_LOG_LEVEL_WARNING
+                default 3 if ESP_UTILS_CONF_LOG_LEVEL_ERROR
+                default 4 if ESP_UTILS_CONF_LOG_LEVEL_NONE
+
+            config ESP_UTILS_CONF_ENABLE_LOG_TRACE
+                bool "Enable trace function"
+                depends on ESP_UTILS_CONF_LOG_LEVEL_DEBUG
+                default n
+                help
+                    If enabled, the driver will print trace log messages when enter/exit functions, useful for debugging
+        endmenu
+
+        menu "Memory functions"
+            depends on ESP_UTILS_CONF_FILE_SKIP
+
+            menu "C/C++ general allocator"
+                config ESP_UTILS_CONF_MEM_GEN_ALLOC_DEFAULT_ENABLE
+                    bool "Default enable allocation"
+                    default y
+                    help
+                        If enabled, the driver will use general memory allocation by default, otherwise, the driver will use
+                        the standard `malloc` and `free` by default
+
+                choice ESP_UTILS_CONF_MEM_GEN_ALLOC_TYPE_CHOICE
+                    prompt "Select allocation type"
+                    default ESP_UTILS_CONF_MEM_GEN_ALLOC_TYPE_STDLIB
+
+                    config ESP_UTILS_CONF_MEM_GEN_ALLOC_TYPE_STDLIB
+                        bool "Standard (malloc, free)"
+
+                    config ESP_UTILS_CONF_MEM_GEN_ALLOC_TYPE_ESP
+                        bool "ESP (`heap_caps_malloc`, `heap_caps_free`)"
+
+                    config ESP_UTILS_CONF_MEM_GEN_ALLOC_TYPE_MICROPYTHON
+                        bool "MicroPython (`mp_malloc`, `mp_free`)"
+
+                    config ESP_UTILS_CONF_MEM_GEN_ALLOC_TYPE_CUSTOM
+                        bool "Custom (`ESP_UTILS_CONF_MEM_GEN_ALLOC_CUSTOM_NEW` and `ESP_UTILS_CONF_MEM_GEN_ALLOC_CUSTOM_DELETE`)"
+                endchoice
+
+                config ESP_UTILS_CONF_MEM_GEN_ALLOC_TYPE
+                    int
+                    default 0 if ESP_UTILS_CONF_MEM_GEN_ALLOC_TYPE_STDLIB
+                    default 1 if ESP_UTILS_CONF_MEM_GEN_ALLOC_TYPE_ESP
+                    default 2 if ESP_UTILS_CONF_MEM_GEN_ALLOC_TYPE_MICROPYTHON
+                    default 3 if ESP_UTILS_CONF_MEM_GEN_ALLOC_TYPE_CUSTOM
+
+                choice ESP_UTILS_CONF_MEM_GEN_ALLOC_ESP_CAPS_CHOICE
+                    prompt "ESP memory caps"
+                    depends on ESP_UTILS_CONF_MEM_GEN_ALLOC_TYPE_ESP
+                    default ESP_UTILS_CONF_MEM_GEN_ALLOC_ESP_CAPS_DEFAULT
+
+                    config ESP_UTILS_CONF_MEM_GEN_ALLOC_ESP_CAPS_DEFAULT
+                        bool "Default"
+
+                    config ESP_UTILS_CONF_MEM_GEN_ALLOC_ESP_CAPS_SRAM
+                        bool "Internal RAM (SRAM)"
+
+                    config ESP_UTILS_CONF_MEM_GEN_ALLOC_ESP_CAPS_PSRAM
+                        bool "External RAM (PSRAM)"
+                endchoice
+
+                config ESP_UTILS_CONF_MEM_GEN_ALLOC_ESP_CAPS
+                    int
+                    default 0 if ESP_UTILS_CONF_MEM_GEN_ALLOC_ESP_CAPS_DEFAULT
+                    default 1 if ESP_UTILS_CONF_MEM_GEN_ALLOC_ESP_CAPS_SRAM
+                    default 2 if ESP_UTILS_CONF_MEM_GEN_ALLOC_ESP_CAPS_PSRAM
+
+                config ESP_UTILS_CONF_MEM_GEN_ALLOC_ESP_ALIGN
+                    int "ESP memory alignment (bytes)"
+                    depends on ESP_UTILS_CONF_MEM_GEN_ALLOC_TYPE_ESP
+                    default 1
+                    range 1 1024
+
+                config ESP_UTILS_CONF_MEM_GEN_ALLOC_CUSTOM_INCLUDE
+                    string "Custom memory header file"
+                    depends on ESP_UTILS_CONF_MEM_GEN_ALLOC_TYPE_CUSTOM
+                    default ""
+            endmenu
+
+            menuconfig ESP_UTILS_CONF_MEM_ENABLE_CXX_GLOB_ALLOC
+                bool "C++ global allocator"
+                default n
+                help
+                    If enabled, the driver will override `new` and `delete` operators to use global memory allocator
+
+            if ESP_UTILS_CONF_MEM_ENABLE_CXX_GLOB_ALLOC
+                config ESP_UTILS_CONF_MEM_CXX_GLOB_ALLOC_DEFAULT_ENABLE
+                    bool "Default enable allocation"
+                    default y
+                    help
+                        If enabled, the driver will use global memory allocation by default, otherwise, the driver will use
+                        the standard `new` and `delete` by default.
+
+                choice ESP_UTILS_CONF_MEM_CXX_GLOB_ALLOC_TYPE_CHOICE
+                    prompt "Select allocation type"
+                    default ESP_UTILS_CONF_MEM_CXX_GLOB_ALLOC_TYPE_ESP
+
+                    config ESP_UTILS_CONF_MEM_CXX_GLOB_ALLOC_TYPE_ESP
+                        bool "ESP (`heap_caps_malloc`, `heap_caps_free`)"
+
+                    config ESP_UTILS_CONF_MEM_CXX_GLOB_ALLOC_TYPE_MICROPYTHON
+                        bool "MicroPython (`mp_malloc`, `mp_free`)"
+
+                    config ESP_UTILS_CONF_MEM_CXX_GLOB_ALLOC_TYPE_CUSTOM
+                        bool "Custom (`ESP_UTILS_CONF_MEM_CXX_GLOB_ALLOC_CUSTOM_NEW` and `ESP_UTILS_CONF_MEM_CXX_GLOB_ALLOC_CUSTOM_DELETE`)"
+                endchoice
+
+                config ESP_UTILS_CONF_MEM_CXX_GLOB_ALLOC_TYPE
+                    int
+                    default 1 if ESP_UTILS_CONF_MEM_CXX_GLOB_ALLOC_TYPE_ESP
+                    default 2 if ESP_UTILS_CONF_MEM_CXX_GLOB_ALLOC_TYPE_MICROPYTHON
+                    default 3 if ESP_UTILS_CONF_MEM_CXX_GLOB_ALLOC_TYPE_CUSTOM
+
+                choice ESP_UTILS_CONF_MEM_CXX_GLOB_ALLOC_ESP_CAPS_CHOICE
+                    prompt "ESP memory caps"
+                    depends on ESP_UTILS_CONF_MEM_CXX_GLOB_ALLOC_TYPE_ESP
+                    default ESP_UTILS_CONF_MEM_CXX_GLOB_ALLOC_ESP_CAPS_DEFAULT
+
+                    config ESP_UTILS_CONF_MEM_CXX_GLOB_ALLOC_ESP_CAPS_DEFAULT
+                        bool "Default"
+
+                    config ESP_UTILS_CONF_MEM_CXX_GLOB_ALLOC_ESP_CAPS_SRAM
+                        bool "Internal RAM (SRAM)"
+
+                    config ESP_UTILS_CONF_MEM_CXX_GLOB_ALLOC_ESP_CAPS_PSRAM
+                        bool "External RAM (PSRAM)"
+                endchoice
+
+                config ESP_UTILS_CONF_MEM_CXX_GLOB_ALLOC_ESP_CAPS
+                    int
+                    default 0 if ESP_UTILS_CONF_MEM_CXX_GLOB_ALLOC_ESP_CAPS_DEFAULT
+                    default 1 if ESP_UTILS_CONF_MEM_CXX_GLOB_ALLOC_ESP_CAPS_SRAM
+                    default 2 if ESP_UTILS_CONF_MEM_CXX_GLOB_ALLOC_ESP_CAPS_PSRAM
+
+                config ESP_UTILS_CONF_MEM_CXX_GLOB_ALLOC_ESP_ALIGN
+                    int "ESP memory alignment (bytes)"
+                    depends on ESP_UTILS_CONF_MEM_CXX_GLOB_ALLOC_TYPE_ESP
+                    default 1
+                    range 1 1024
+
+                config ESP_UTILS_CONF_MEM_CXX_GLOB_ALLOC_CUSTOM_INCLUDE
+                    string "Custom memory header file"
+                    depends on ESP_UTILS_CONF_MEM_CXX_GLOB_ALLOC_TYPE_CUSTOM
+                    default ""
+            endif # ESP_UTILS_CONF_MEM_ENABLE_CXX_GLOB_ALLOC
+        endmenu
+    endif # ESP_UTILS_CONF_FILE_SKIP
+endmenu

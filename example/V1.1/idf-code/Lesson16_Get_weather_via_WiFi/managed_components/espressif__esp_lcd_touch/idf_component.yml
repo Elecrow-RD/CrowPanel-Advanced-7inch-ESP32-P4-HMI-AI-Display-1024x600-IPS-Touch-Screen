@@ -1,0 +1,9 @@
+dependencies:
+  idf: '>=4.4.2'
+description: ESP LCD Touch - main component for using touch screen controllers
+repository: git://github.com/espressif/esp-bsp.git
+repository_info:
+  commit_sha: d15cf39696339b128eceb75665d806d8bd10959a
+  path: components/lcd_touch/esp_lcd_touch
+url: https://github.com/espressif/esp-bsp/tree/master/components/lcd_touch/esp_lcd_touch
+version: 1.2.0

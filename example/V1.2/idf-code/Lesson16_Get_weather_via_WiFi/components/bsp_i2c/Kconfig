@@ -1,0 +1,24 @@
+menu "BSP I2C Setup"
+    config BSP_I2C_ENABLED
+        bool "Enable I2C functions"
+        default y
+
+    if BSP_I2C_ENABLED
+        config I2C_PORT_NUM
+            int "I2C Master Port"
+            default 0
+            
+        config I2C_GPIO_SCL
+            int "GPIO For I2C SCL"
+            default 46
+
+        config I2C_GPIO_SDA
+            int "GPIO For I2C SDA"
+            default 45
+
+        config I2C_GPIO_PULLUP
+            bool "Enable I2C Pullup resistor"
+            default y
+        
+    endif
+endmenu

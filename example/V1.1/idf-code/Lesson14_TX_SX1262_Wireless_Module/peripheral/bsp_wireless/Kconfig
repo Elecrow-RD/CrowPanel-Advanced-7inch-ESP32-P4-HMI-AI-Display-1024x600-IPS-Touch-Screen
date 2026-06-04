@@ -1,0 +1,80 @@
+menu "BSP WIRELESS Setup"
+
+    config BSP_WIRELESS_ENABLED
+        bool "Enable wireless mou config"
+        default n
+
+    if BSP_WIRELESS_ENABLED
+        config BSP_SX1262_ENABLED
+            bool "Enable SX1262 config"
+            default n
+
+        config BSP_NRF2401_ENABLED
+            bool "Enable NRF2401 config"
+            default n
+
+        config BSP_UART_TRANSPOND_ENABLED
+            bool "Enable UART TRANSPOND"
+            default n
+            
+        config RADIO_GPIO_CLK
+            int "The CLK pin of the wireless module"
+            default 8
+
+        config RADIO_GPIO_MISO
+            int "The MISO pin of the wireless module"
+            default 7
+
+        config RADIO_GPIO_MOSI
+            int "The MOSI pin of the wireless module "
+            default 6
+
+        if BSP_UART_TRANSPOND_ENABLED
+        
+            config UART_GPIO_TXD
+            int "the UART Tx pin"
+            default 53
+
+            config UART_GPIO_RXD
+            int "the UART Rx pin"
+            default 54
+
+        endif
+
+        if BSP_SX1262_ENABLED
+            
+            config SX1262_GPIO_BUSY
+                int "The BUSY pin of the wireless module SX1262"
+                default 9
+
+            config SX1262_GPIO_IRQ 
+                int "The DIO1 pin of the wireless module SX1262"
+                default 53
+            
+            config SX1262_GPIO_NRST
+                int "The NRST pin of the wireless module SX1262"
+                default 54
+            
+            config SX1262_GPIO_NSS
+                int "The NSS pin of the wireless module SX1262"
+                default 10
+
+        endif
+
+        if BSP_NRF2401_ENABLED
+                
+            config NRF24_GPIO_IRQ 
+                int "The IRQ pin of the wireless module NRF24"
+                default 9
+            
+            config NRF24_GPIO_CE
+                int "The CE pin of the wireless module NRF24"
+                default 53
+            
+            config NRF24_GPIO_CS
+                int "The CS pin of the wireless module NRF24"
+                default 54
+        endif
+        
+    endif
+endmenu
