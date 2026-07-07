@@ -1,3 +1,0 @@
-dependencies:
-  esp_wifi_remote:
-    version: '*'
