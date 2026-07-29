@@ -1,0 +1,17 @@
+{
+  "idf.currentSetup": "E:\\CodeX_CcSwitch\\ESP-IDF\\.espressif\\v5.5.4\\esp-idf",
+  "idf.customExtraVars": {
+    "IDF_TARGET": "esp32p4"
+  },
+  "clangd.path": "C:\\Espressif\\tools\\esp-clang\\esp-18.1.2_20240912\\esp-clang\\bin\\clangd.exe",
+  "clangd.arguments": [
+    "--background-index",
+    "--query-driver=**",
+    "--compile-commands-dir=e:\\AI_Course\\P4\\IDF\\Code\\idf-code\\Lesson12-Playing_Loca_Music_from_SD_Card\\build"
+  ],
+  "idf.flashType": "UART",
+  "idf.portWin": "COM53",
+  "idf.openOcdConfigs": [
+    "board/esp32p4-builtin.cfg"
+  ]
+}

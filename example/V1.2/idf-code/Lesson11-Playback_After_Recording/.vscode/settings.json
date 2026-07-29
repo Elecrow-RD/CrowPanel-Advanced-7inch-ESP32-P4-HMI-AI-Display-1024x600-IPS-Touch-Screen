@@ -1,0 +1,16 @@
+{
+  "idf.openOcdConfigs": [
+    "board/esp32p4-builtin.cfg"
+  ],
+  "idf.customExtraVars": {
+    "IDF_TARGET": "esp32p4"
+  },
+  "clangd.path": "C:\\Espressif\\tools\\esp-clang\\esp-18.1.2_20240912\\esp-clang\\bin\\clangd.exe",
+  "clangd.arguments": [
+    "--background-index",
+    "--query-driver=**",
+    "--compile-commands-dir=e:\\AI_Course\\P4\\IDF\\Code\\idf-code\\Lesson11-Playback_After_Recording\\build"
+  ],
+  "idf.flashType": "UART",
+  "idf.portWin": "COM53"
+}
