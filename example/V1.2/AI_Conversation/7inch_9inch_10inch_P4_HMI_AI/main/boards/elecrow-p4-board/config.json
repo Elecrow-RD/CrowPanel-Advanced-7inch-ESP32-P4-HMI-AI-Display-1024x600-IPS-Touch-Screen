@@ -1,0 +1,13 @@
+{
+    "target": "esp32p4",
+    "builds": [
+        {
+            "name": "elecrow-p4-board",
+            "sdkconfig_append": [
+                "CONFIG_IDF_TARGET=\"esp32p4\"",
+                "CONFIG_ESPTOOLPY_FLASHSIZE_16MB=y",
+                "CONFIG_PARTITION_TABLE_CUSTOM_FILENAME=\"partitions/v2/16m.csv\""
+            ]
+        }
+    ]
+}

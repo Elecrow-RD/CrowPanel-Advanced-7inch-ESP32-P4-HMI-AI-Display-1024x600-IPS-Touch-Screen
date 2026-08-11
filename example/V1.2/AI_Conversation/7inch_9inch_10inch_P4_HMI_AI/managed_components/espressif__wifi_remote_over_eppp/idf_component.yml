@@ -1,0 +1,13 @@
+dependencies:
+  espressif/eppp_link:
+    version: '>=0.1'
+  idf:
+    version: '>=5.3'
+description: EPPP based implementation of wifi_remote APIs
+license: Apache-2.0
+repository: git://github.com/espressif/esp-wifi-remote.git
+repository_info:
+  commit_sha: 1205da9e0c618f43936391207425d63f3f27ed28
+  path: components/wifi_remote_over_eppp
+url: https://github.com/espressif/esp-wifi-remote/components/wifi_remote_over_eppp
+version: 0.3.0

@@ -1,0 +1,10 @@
+dependencies:
+  lvgl/lvgl: '>=9.0'
+description: Otto机器人GIF表情资源包 - 包含6个动态表情GIF
+license: MIT
+repository: git://github.com/txp666/otto-emoji-gif-component.git
+repository_info:
+  commit_sha: 53340eef8e95b66f6a4e7e01d69b0fcb2c7c5679
+  path: .
+url: https://github.com/txp666/otto-emoji-gif-component
+version: 1.0.4

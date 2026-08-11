@@ -1,0 +1,48 @@
+menu "Bus Options"
+
+    menu "I2C Bus Options"
+        config I2C_BUS_DYNAMIC_CONFIG
+            bool "enable dynamic configuration"
+            default y
+            help
+                If enable, i2c_bus will dynamically check configs and re-install i2c driver before each transfer,
+                hence multiple devices with different configs on a single bus can be supported.
+
+        config I2C_MS_TO_WAIT
+            int "mutex block time"
+            default 200
+            range 50 5000
+            help
+                task block time when try to take the bus, unit:milliseconds
+
+        config I2C_BUS_BACKWARD_CONFIG
+            bool "Enable backward compatibility for the I2C driver (force use of the old i2c_driver above v5.3)"
+            default n
+            help
+                Enable this option for backward compatibility with the old I2C driver (only valid in IDF v5.3 and above).
+
+        config I2C_BUS_SUPPORT_SOFTWARE
+            bool "Enable software I2C support"
+            default n
+            help
+                Enable this option to use a software-implemented I2C driver. This can be useful for scenarios where
+                hardware I2C is unavailable or additional I2C buses are needed beyond the hardware support.
+
+        config I2C_BUS_SOFTWARE_MAX_PORT
+            int "Maximum number of software I2C ports"
+            default 2
+            range 1 5
+            depends on I2C_BUS_SUPPORT_SOFTWARE
+            help
+                Set the maximum number of software I2C ports that can be used. This option is only applicable when
+                software I2C support is enabled.
+
+        config I2C_BUS_REMOVE_NULL_MEM_ADDR
+            bool "Remove the limitation of NULL_MEM_ADDR, any register address will be sent"
+            default n
+            help
+                Enable this option to disable NULL_MEM_ADDR. This allows any register address to be sent.
+
+    endmenu
+
+endmenu
