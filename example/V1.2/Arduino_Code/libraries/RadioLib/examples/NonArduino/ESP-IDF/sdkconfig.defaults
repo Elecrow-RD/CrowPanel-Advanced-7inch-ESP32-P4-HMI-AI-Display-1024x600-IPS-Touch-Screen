@@ -1,2 +1,0 @@
-# Increase FreeRTOS tick rate to 1000 Hz
-CONFIG_FREERTOS_HZ=1000
