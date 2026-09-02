@@ -1,0 +1,6 @@
+dependencies:
+  idf:
+    version: '5.5.4'
+  espressif/esp_lcd_ek79007: '1.0.2'
+  espressif/esp_lvgl_port: '2.6.0'
+  lvgl/lvgl: '9.1.0'

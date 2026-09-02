@@ -1,0 +1,8 @@
+## IDF Component Manager Manifest File
+dependencies:
+  idf:
+    version: '5.5.4'
+  jgromes/radiolib: '7.2.1'
+  espressif/esp_lcd_ek79007: '1.0.2'
+  lvgl/lvgl: '9.1.0'
+  espressif/esp_lvgl_port: '2.6.0'

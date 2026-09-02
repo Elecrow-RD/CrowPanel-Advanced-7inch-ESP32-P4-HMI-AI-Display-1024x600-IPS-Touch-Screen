@@ -1,0 +1,53 @@
+menu "BSP DISPLAY Setup"
+    config BSP_DISPLAY_ENABLED
+        bool "Enable display functions"
+        default y
+    
+    if BSP_DISPLAY_ENABLED
+    
+        config BSP_TOUCH_ENABLED
+        bool "Enable touch functions"
+        default y
+        depends on BSP_I2C_ENABLED
+
+        config H_SIZE
+            int "Horizontal Resolution"
+            default 1024
+
+        config V_SIZE
+            int "Vertical Resolution"
+            default 600
+      
+        config BITS_PER_PIXEL
+            int "Color depth"
+            default 16
+
+        config LCD_GPIO_BLIGHT
+            int "GPIO For LCD BACKLIGHT"
+            default 31
+        
+        config BLIGHT_PWM_Hz
+            int "the PWM output HZ"
+            default 30000
+
+        config DISPLAY_LVGL_FULL_REFRESH
+            bool "Enable fullscreen refresh"
+
+        config DISPLAY_LVGL_DIRECT_MODE
+            bool "Use screen-sized buffers"
+        
+        config DISPLAY_LVGL_AVOID_TEAR
+            bool "Enable to avoid fragmentation"
+            
+        if BSP_TOUCH_ENABLED
+            config TOUCH_GPIO_RST
+                int "GPIO For Touch RST"
+                default 40
+
+            config TOUCH_GPIO_INT
+                int "GPIO For Touch INT"
+                default 42
+        endif
+
+    endif
+endmenu
