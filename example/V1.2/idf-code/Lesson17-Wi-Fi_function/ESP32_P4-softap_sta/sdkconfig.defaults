@@ -1,0 +1,25 @@
+# ESP32-P4 v1.x chip revision support.
+CONFIG_IDF_TARGET="esp32p4"
+CONFIG_ESP32P4_SELECTS_REV_LESS_V3=y
+CONFIG_ESP32P4_REV_MIN_100=y
+CONFIG_ESP32P4_REV_MAX_FULL=199
+
+# NAPT (WiFi NAT router): softAP clients reach the Internet through the STA.
+CONFIG_LWIP_IP_FORWARD=y
+CONFIG_LWIP_IPV4_NAPT=y
+CONFIG_LWIP_IPV4_NAPT_PORTMAP=y
+
+# Example Configuration - softAP advertised to phones.
+CONFIG_ESP_WIFI_AP_SSID="ELECROW"
+CONFIG_ESP_WIFI_AP_PASSWORD="12345678"
+CONFIG_ESP_WIFI_AP_CHANNEL=1
+CONFIG_ESP_MAX_STA_CONN_AP=4
+
+# Example Configuration - upstream router the station joins (2.4 GHz only).
+# Change these to your own router, either here or via "idf.py menuconfig".
+CONFIG_ESP_WIFI_REMOTE_AP_SSID="yanfa1"
+CONFIG_ESP_WIFI_REMOTE_AP_PASSWORD="1223334444yanfa"
+CONFIG_ESP_MAXIMUM_STA_RETRY=5
+
+# Accept any upstream auth mode while scanning (OPEN = no filtering).
+CONFIG_ESP_WIFI_AUTH_OPEN=y
