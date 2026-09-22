@@ -1,0 +1,37 @@
+# ============================================================================
+# 工程级 sdkconfig 默认值
+#
+# 这些值只在 sdkconfig 被「重新生成」时生效，例如：
+#   - 第一次配置本工程（sdkconfig 不存在）
+#   - VS Code 里换了目标芯片 / 执行 idf.py set-target esp32p4
+#   - 手动删除 sdkconfig 后重新 build
+#
+# 日常改配置走 menuconfig（会写进 sdkconfig，优先级高于本文件）。
+# ============================================================================
+
+
+# ── ESP32-P4 芯片版本 ───────────────────────────────────────────────────────
+# 【重要】本板芯片为 ESP32-P4 revision v1.3，属于 rev < 3.0 分支。
+#
+# ESP-IDF v5.5 起，rev<3.0 与 rev>=3.0 的支持是「互斥」的，由
+# ESP32P4_SELECTS_REV_LESS_V3 控制，且默认值为 n（即按 rev>=3.0 编译，
+# 最低版本 v3.1）。
+#
+# 不设置这两项的后果：编译出的 bootloader 会写入 [v3.1 - v3.99] 的版本约束，
+# 烧录时 esptool 直接拒绝：
+#   A fatal error occurred: bootloader/bootloader.bin requires chip revision
+#   in range [v3.1 - v3.99] (this chip is revision v1.3). Use --force to flash anyway.
+#
+# 注意：这里不能用 --force 绕过。强行烧进去后 bootloader 自己也会在启动时
+# 校验并拒绝运行，表现是反复重启。必须重新编译。
+#
+# 副作用：选中 rev<3.0 后，CPU 频率自动回到 360MHz（400MHz 只对 rev>=3.0 开放，
+# rev<3.0 想跑 400MHz 需要经 Espressif 单独认证的芯片）。
+CONFIG_ESP32P4_SELECTS_REV_LESS_V3=y
+CONFIG_ESP32P4_REV_MIN_1=y
+
+
+# ── 板级硬件配置（与 partitions.csv 配套，防止 set-target 后丢失）─────────────
+CONFIG_ESPTOOLPY_FLASHSIZE_16MB=y
+CONFIG_PARTITION_TABLE_CUSTOM=y
+CONFIG_PARTITION_TABLE_CUSTOM_FILENAME="partitions.csv"
