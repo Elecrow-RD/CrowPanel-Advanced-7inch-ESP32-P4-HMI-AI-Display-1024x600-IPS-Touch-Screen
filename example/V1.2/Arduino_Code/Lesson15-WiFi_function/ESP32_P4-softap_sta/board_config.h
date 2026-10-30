@@ -47,7 +47,7 @@
 #define WIFI_HOSTED_SDIO_PIN_D1             (16) // SDIO Data line 1
 #define WIFI_HOSTED_SDIO_PIN_D2             (15) // SDIO Data line 2
 #define WIFI_HOSTED_SDIO_PIN_D3             (14) // SDIO Data line 3 (4-bit mode)
-#define WIFI_HOSTED_SDIO_PIN_RESET          (54) // Hardware Reset for the ESP32-C6 co-processor
+#define WIFI_HOSTED_SDIO_PIN_RESET          (32) // Hardware Reset for the ESP32-C6 co-processor
 
 #endif
 /*********************** Pin define ***********************/
