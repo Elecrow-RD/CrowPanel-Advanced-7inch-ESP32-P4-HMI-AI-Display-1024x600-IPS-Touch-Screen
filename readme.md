@@ -9,8 +9,10 @@
 |      | Hardware | Software | Remark |
 | ---- | -------- | -------- | ------ |
 | 1    | V1.0     | V1.0     | old |
-| 1    | V1.1     | V1.1     | old |
-| 1    | V1.2     | V1.2     | latest |
+| 2    | V1.1     | V1.1     | old |
+| 3    | V1.2     | V1.2     | old |
+| 4 | V1.3 | V1.2 | old |
+| 5 | V2.0 | V2.0 | latest |
 
 
 **Version 1.1 Update**
@@ -20,6 +22,18 @@ The C6 module version 1.1 adds support for 4-wire SDIO communication. Additional
 **Version 1.2 Update** 
 
 Based on the V1.1 version, V1.2 further optimized the communication stability of the LoRa wireless module. At the same time, the signal pins of the wireless module socket were re-allocated: the original **IO53 and IO54** were adjusted to **IO27 and IO28** respectively, and correspondingly, **IO27 and IO28** were adjusted to **IO53 and IO54** respectively.
+
+
+
+**Version 1.3 Update**
+
+V1.3 Adds certification screen printing based on version 1.2; there are no circuit modifications. The code and course materials from version 1.2 can still be used.
+
+**Version 2.0 Update**
+
+The V2.0 P4 controller uses the P4 V3.2 chip. Based on version 1.3, the design has been modified from a single-microphone + NS4168 configuration to a dual-microphone ES7210 + ES8311 configuration, and an RTC module has been added. The code uses version 2.0.
+
+
 
 ### 3, product information
 
